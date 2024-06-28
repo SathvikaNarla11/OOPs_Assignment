@@ -1,0 +1,123 @@
+1. Marks, input 3 subjects marks, sum, average of marks
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Marks
+{
+    int m1, m2, m3;
+    public:
+    int res;
+    Marks()
+    {
+        m1=0; m2=0; m3=0;
+    }
+    void in()
+    {
+        cout<<"Enter the marks: ";
+        cin>>m1>>m2>>m3;
+    }
+    int sum()
+    {
+        res = m1+m2+m3;
+        return res;
+    }
+    float average()
+    {
+        return float(res)/3;
+    }
+};
+
+int main()
+{
+    Marks obj;
+    obj.in();
+    cout<<"Sum : "<<obj.sum()<<endl;
+    cout<<"Average : "<<setprecision(4)<<obj.average()<<endl;
+}
+
+
+
+2. Area and circumference of a circle
+
+#include <iostream>
+using namespace std;
+
+class Circle
+{
+    private:
+    int r;
+    
+    public:
+    Circle(){r=0;}
+    void setRadius(int radius)
+    {
+        r = radius;
+    }
+    float resArea, resCircum;
+    void area()
+    {
+        resArea = 3.14*r*r;
+        cout<<"Radius : "<<resArea<<endl;
+    }
+    void circum()
+    {
+        resCircum = 2*3.14*r;
+        cout<<"Circumference : "<<resCircum<<endl;
+    }
+};
+int main()
+{
+    Circle c1;
+    c1.setRadius(21);
+    c1.area();
+    c1.circum();
+}
+
+
+
+3. Details of a book - BookID, pages, price
+#include <iostream>
+using namespace std;
+class Book
+{
+    int bookID;
+    int pages;
+    int price;
+    
+    public:
+    void get()
+    {
+        cout<<"Enter details - bookID, pages, price"<<endl;
+        cin>>bookID>>pages>>price;
+    }
+    void show()
+    {
+        cout<<"BookID : "<<bookID<<endl;
+        cout<<"Pages : "<<pages<<endl;
+        cout<<"Price : "<<price<<endl;
+    }
+    void set(int id, int pgs, int rs)
+    {
+        bookID = id;
+        pages = pgs;
+        price = rs;
+    }
+    int getPrice()
+    {
+        return price;
+    }
+};
+int main()
+{
+    Book b1;
+    b1.get();
+    b1.show();
+    cout<<"Price of b1 : "<<b1.getPrice()<<endl;
+    Book b2;
+    b2.set(2, 200, 2000);
+    cout<<"Price of b2 : "<<b2.getPrice()<<endl;
+}
+
+
