@@ -121,3 +121,386 @@ int main()
 }
 
 
+4.
+#include <iostream>
+using namespace std;
+
+class Result
+{
+    int rollno;
+    string name;
+    int m[3];
+    
+    public:
+    void input()
+    {
+        cout<<"Enter rollno : ";
+        cin>>rollno;
+        cout<<"Enter name : ";
+        cin>>name;
+        cout<<"Enter the marks of three subjects : ";
+        for(int i=0; i<3; i++)
+        {
+            cin>>m[i];
+        }
+    }
+    
+    void show()
+    {
+        cout<<endl<<"Displaying the details"<<endl;
+        cout<<"Roll No : "<<rollno<<endl;
+        cout<<"Name : "<<name<<endl;
+        cout<<"Marks of 3 subjects : "<<endl;
+        for(int i=0; i<3; i++)
+        {
+            cout<<m[i]<<endl;
+        }
+    }
+    
+    int tot = 0;
+    int total()
+    {
+        for(int i=0; i<3; i++)
+        {
+            tot += m[i];
+        }
+        return tot;
+    }
+    
+    int average()
+    {
+        int avg = tot / 3;
+        return avg;
+    }
+};
+int main()
+{
+    Result r;
+    r.input();
+    r.show();
+    cout<<"Total marks : "<<r.total()<<endl;
+    cout<<"Average : "<<r.average();
+}
+
+
+5.
+#include <iostream>
+using namespace std;
+
+class Array
+{
+    private:
+    int arr[5];
+    
+    public:
+    void fill();
+    void display();
+    int max();
+    int min();
+};
+
+void Array :: fill()
+{
+    cout<<"Enter 5 integers to store in array : "<<endl;
+    for(int i=0; i<5; i++)
+    {
+        cin>>arr[i];
+    }
+}
+
+void Array :: display()
+{
+    cout<<"The integers in the array are : "<<endl;
+    for(int i=0; i<5; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int Array ::max()
+{
+    int max = 0;
+    for(int i=0; i<5; i++)
+    {
+        if(arr[i] > max)
+        {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int Array ::min()
+{
+    int min = arr[0];
+    for(int i=0; i<5; i++)
+    {
+        // min = arr[0];
+        if(arr[i] < min)
+        {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+int main()
+{
+    Array a1;
+    a1.fill();
+    a1.display();
+    cout<<endl<<"Max : "<<a1.max()<<endl;
+    cout<<"Min : "<<a1.min()<<endl;
+}
+
+
+6.
+#include <iostream>
+#include <iomanip>
+using namespace std;
+class Employee
+{
+    private:
+    int no;
+    double rs;
+    
+    public:
+    void getdata()
+    {
+        cin>>no;
+        cin>>rs;
+    }
+    void show()
+    {
+        cout<<no<<endl;
+        cout<<fixed<<setprecision(2)<<rs<<endl;
+    }
+};
+
+int main()
+{
+    Employee e1;
+    e1.getdata();
+    e1.show();
+}
+
+7.
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Bank
+{
+    string name;
+    int accNo;
+    string type;
+    int balance;
+    
+    public:
+    
+    Bank(){}
+    
+    Bank(string nme, int aNo, string ty, int blnce)
+    {
+        name = nme;
+        accNo = aNo;
+        type = ty;
+        balance = blnce;
+    }
+    
+    void createAccount(string n, int ano, int b)
+    {
+        name = n;
+        accNo = ano;
+        balance = b;
+    }
+    
+    void deposit()
+    {
+        int deposit;
+        cout<<"Enter the amount to be deposited : ";
+        cin>>deposit;
+        cout<<"Deposited amount : "<<deposit<<endl;
+        balance = balance + deposit;
+        show();
+    }
+    
+    void withdraw()
+    {
+        int withdraw;
+        cout<<"Enter the amount to withdraw : ";
+        cin>>withdraw;
+        cout<<"Withdrawed amount : "<<withdraw<<endl;
+        balance = balance - withdraw;
+    }
+    
+    void show()
+    {
+        cout<<"                            "<<endl;
+        cout<<"****** Account Details *******"<<endl;
+        cout<<"                            "<<endl;
+        cout<<left<<setw(15)<<"Name : "<<name<<endl;
+        cout<<left<<setw(15)<<"Account no :"<<accNo<<endl;
+        cout<<left<<setw(15)<<"Balance : "<<balance<<endl;
+        cout<<"                            "<<endl;
+    }
+};
+int main()
+{
+    int n;
+    Bank b1;
+    b1.createAccount("John", 12123, 20000);
+    do
+    {
+        cout<<"---"<<endl;
+        cout<<"Enter 0 for account details"<<endl;
+        cout<<"Enter 1 for DEPOSIT"<<endl;
+        cout<<"Enter 2 for WITHDRAW"<<endl;
+        cout<<"---"<<endl;
+        cin>>n;
+        if(n==1)
+        {
+            b1.deposit();
+            b1.show();
+        }
+        else if(n==2)
+        {
+            b1.withdraw();
+            b1.show();
+        }
+        else if(n==0)
+        {
+            b1.show();
+        }
+    }
+    while(n==1 || n==2 || n==0);
+}
+
+
+8.
+#include <iostream>
+#include <iomanip>
+#include <vector>
+using namespace std;
+
+class Run
+{
+    string name;
+    int distance;
+    
+    public:
+    int max = 0;
+    int prev;
+    int getData()
+    {
+        cout<<"Enter the Runner name and distance covered : "<<endl;
+        cin>>name;
+        cin>>distance;
+        if(distance > max)
+        {
+            prev = max;
+            max = distance;
+        }
+        return max;
+        
+    }
+    void setData()
+    {
+        cout<<fixed<<setw(10)<<name;
+        cout<<setw(10)<<distance<<endl;
+    }
+    void longestDistance()
+    {
+        cout<<max;
+    }
+};
+
+int main()
+{
+    vector <Run> obj;
+    int n;
+    cout<<"Enter the number of participates"<<endl;
+    cin>>n;
+    Run r;
+    for(int i=0; i<n; i++)
+    {
+        r.getData();
+        obj.push_back(r);
+    }
+    cout<<"                                      "<<endl;
+    cout<<"Runner name "<<" "<<"Distance covered "<<endl;
+    cout<<"----------- "<<" "<<"---------------- "<<endl;
+    for(int i=0; i<n; i++)
+    {
+        obj[i].setData();
+    }
+    
+    cout<<"Longest distance covered : ";
+    r.longestDistance();
+}
+
+
+9.
+#include <iostream>
+using namespace std;
+
+class Car
+{
+    private:
+    string name;
+    char direction;
+    
+    public:
+    Car(string cname, char d)
+    {
+        name = cname;
+        direction = d;
+    }
+    //n - e- s - w
+    void turn()
+    {
+        if(direction == 'N')
+        {
+            direction = 'E';
+        }
+        else if(direction == 'E')
+        {
+            direction = 'S';
+        }
+        else if(direction == 'S')
+        {
+            direction = 'W';
+        }
+        else if(direction == 'W')
+        {
+            direction = 'N';
+        }
+    }
+    
+    void turn(char dir)
+    {
+        direction = dir;
+    }
+    void display()
+    {
+        cout<<name<<endl;
+        cout<<direction<<endl;
+    }
+    
+};
+int main()
+{
+    Car c("BMW", 'E');
+    c.display();
+    cout<<endl;
+    c.turn();
+    c.display();
+    cout<<endl;
+    cout<<"Enter ch : ";
+    char ch;
+    cin>>ch;
+    c.turn(ch);
+    c.display();
+}
+
+
